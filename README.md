@@ -185,6 +185,55 @@ npm start
 
 ## 🚀 Deployment Options
 
+## ⚙️ Backend & Database Setup
+
+Requirements:
+- Node.js 18+ and npm
+- MySQL server (or compatible)
+
+1. Copy `.env.example` to `.env` and fill values:
+
+```
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-email@example.com
+SMTP_PASS=your-email-password
+SMTP_FROM=portfolio@example.com
+CONTACT_TO_EMAIL=you@example.com
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=your_db_password
+DB_NAME=portfolio
+JWT_SECRET=your_jwt_secret
+```
+
+2. Install dependencies and run migrations (create database/schema):
+
+```bash
+npm install
+# create the database and run schema SQL (example using mysql CLI)
+mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS portfolio;"
+mysql -u root -p portfolio < sql/schema.sql
+mysql -u root -p portfolio < sql/seed.sql
+```
+
+3. Start the server locally:
+
+```bash
+npm start
+# or for development
+npm run dev
+```
+
+4. Contact form endpoint: `POST /api/contact` — the frontend already posts here.
+
+5. Authentication (demo): `POST /api/auth/login` accepts `email` and `password` (see `sql/seed.sql` demo user).
+
+Security notes:
+- This project includes demo/placeholder authentication and seed data — update password handling and secrets before production.
+
+
 ### GitHub Pages (Free)
 1. Push to GitHub
 2. Enable Pages in repository settings
